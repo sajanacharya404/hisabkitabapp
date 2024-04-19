@@ -1,17 +1,33 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons from react-native-vector-icons
+import { useNavigation } from "@react-navigation/native"; // Import navigation hook
 
 const HomeButton = () => {
+  const navigation = useNavigation(); // Get navigation object
+
+  const navigateToHome = () => {
+    // You can navigate to home screen if needed
+    // navigation.navigate('Home');
+  };
+
+  const navigateToProfile = () => {
+    navigation.navigate("Profile"); // Navigate to the profile screen
+  };
+
+  const navigateToSettings = () => {
+    navigation.navigate("Settings"); // Navigate to the settings screen
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={navigateToHome}>
         <Ionicons name="home" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={navigateToProfile}>
         <Ionicons name="person" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={navigateToSettings}>
         <Ionicons name="settings" size={24} color="white" />
       </TouchableOpacity>
     </View>
