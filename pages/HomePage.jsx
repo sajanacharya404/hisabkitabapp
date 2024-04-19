@@ -4,13 +4,16 @@ import {
   Text,
   View,
   TouchableOpacity,
-  ScrollView,
   Dimensions,
   Animated,
   PanResponder,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons from react-native-vector-icons
 import HomeButton from "../components/HomeButton";
+import HorizontalCarousel from "../components/HorizontalCarousel";
+import TabNavigator from "../components/TabNavigator";
+import PlusButton from "../components/PlusButton";
+import ImageSlider from "../components/ImageSlider";
 
 const { width, height } = Dimensions.get("window");
 
@@ -79,7 +82,7 @@ const HomePage = () => {
       <View style={styles.top_bar}>
         <TouchableOpacity style={styles.menuToggle} onPress={toggleMenu}>
           <Ionicons
-            name={isMenuOpen ? "" : "menu"}
+            name={isMenuOpen ? "close-circle-outline" : "menu"}
             size={width * 0.06}
             color="white"
           />
@@ -88,11 +91,13 @@ const HomePage = () => {
         <TouchableOpacity style={styles.refreshIcon} onPress={handleRefresh}>
           <Ionicons name="refresh" size={width * 0.06} color="white" />
         </TouchableOpacity>
+        <View style={styles.hometextview}>
+          <Text style={styles.hometext}>Welcome To HisabKitab</Text>
+        </View>
       </View>
-
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Text style={styles.heading}>HomePage</Text>
-      </ScrollView>
+      <ImageSlider />
+      <HorizontalCarousel />
+      <TabNavigator />
 
       <Animated.View
         {...panResponder.panHandlers}
@@ -119,6 +124,7 @@ const HomePage = () => {
       {isMenuOpen && (
         <TouchableOpacity style={styles.overlay} onPress={closeMenu} />
       )}
+      <PlusButton />
       <HomeButton />
     </View>
   );
@@ -135,9 +141,21 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 1,
   },
+  hometext: {
+    fontSize: 30,
+    textAlign: "center",
+    justifyContent: "center",
+    color: "white",
+  },
+  hometextview: {
+    position: "absolute",
+    top: 25,
+    left: 70,
+    zIndex: 1,
+  },
   top_bar: {
     backgroundColor: "#2cd380",
-    height: 300,
+    height: 90,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
   },
@@ -197,6 +215,19 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     zIndex: 0,
+  },
+  iconTextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+    paddingHorizontal: 20,
+  },
+  iconText: {
+    marginLeft: 10,
+    fontSize: 18,
+  },
+  likeButton: {
+    marginLeft: "auto",
   },
 });
 

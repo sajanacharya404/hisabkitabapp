@@ -39,7 +39,6 @@ const HorizontalCarousel: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     height: 100,
-    marginTop: 20,
   },
   flatListContent: {
     paddingVertical: 10,
