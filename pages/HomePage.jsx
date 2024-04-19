@@ -120,6 +120,51 @@ const HomePage = () => {
         <TouchableOpacity style={styles.menuItem}>
           <Text style={styles.menuItemText}>Menu Item 3</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Menu Item 3</Text>
+        </TouchableOpacity>
       </Animated.View>
       {isMenuOpen && (
         <TouchableOpacity style={styles.overlay} onPress={closeMenu} />
@@ -171,7 +216,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   menu_top: {
-    height: 100,
+    height: 90,
     backgroundColor: "#2cd380",
     color: "white",
     textAlign: "center",
