@@ -39,7 +39,6 @@ const Account: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Account</Text>
       <View style={styles.content}>
         <Text style={styles.label}>Name:</Text>
         <TextInput
@@ -82,11 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
+
   content: {
     alignItems: "flex-start",
     width: "80%",
