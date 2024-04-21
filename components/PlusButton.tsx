@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 30,
-    marginTop: 20,
     elevation: 3,
   },
   buttonText: {
@@ -173,7 +172,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: "absolute",
-    top: 10,
+    top: 20,
     right: 10,
   },
   inputContainer: {
