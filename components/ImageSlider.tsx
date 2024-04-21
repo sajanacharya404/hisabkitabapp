@@ -1,12 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  Image,
-  StyleSheet,
-  Dimensions,
-  Animated,
-} from "react-native";
+import React, { useRef, useEffect, useState } from "react";
+import { View, Image, StyleSheet, Dimensions, FlatList } from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -17,51 +10,55 @@ interface ImageData {
 
 const ImageSlider: React.FC = () => {
   const images: ImageData[] = [
-    { id: 1, uri: "https://via.placeholder.com/300" },
-    { id: 2, uri: "https://via.placeholder.com/300" },
-    { id: 3, uri: "https://via.placeholder.com/300" },
-    { id: 4, uri: "https://via.placeholder.com/300" },
-    { id: 5, uri: "https://via.placeholder.com/300" },
+    {
+      id: 1,
+      uri: "https://aimg.kwcdn.com/material-put/1f13e180000/d2efb0ea-58bc-471a-8271-cbfc0f19a05b.jpeg?imageView2/q/70/format/webp",
+    },
+    {
+      id: 2,
+      uri: "https://temu.gastii.com/media/Bannarimage/banner_Tc6Udmc.png",
+    },
   ];
 
-  // Animated value for controlling translation
-  const translateX = useRef(new Animated.Value(0)).current;
+  const flatListRef = useRef<FlatList<ImageData>>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Start the animation loop
-    const animateImages = (index: number) => {
-      Animated.timing(translateX, {
-        toValue: -width * index,
-        duration: 1000, // Adjust duration as needed
-        useNativeDriver: true,
-      }).start(() => {
-        // Pause before transitioning to the next image
-        setTimeout(() => {
-          const nextIndex = (index + 1) % images.length;
-          animateImages(nextIndex);
-        }, 5000); // Adjust pause duration as needed
-      });
-    };
+    const intervalId = setInterval(() => {
+      if (flatListRef.current) {
+        const newIndex = (currentIndex + 1) % images.length;
+        setCurrentIndex(newIndex);
+        flatListRef.current.scrollToIndex({
+          animated: true,
+          index: newIndex,
+        });
+      }
+    }, 5000);
 
-    animateImages(0);
-
-    // Clear the animation when component unmounts
-    return () => {
-      translateX.stopAnimation();
-    };
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [currentIndex]);
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={{ flexDirection: "row", transform: [{ translateX }] }}
-      >
-        {images.map((item) => (
-          <View key={item.id} style={styles.imageContainer}>
+      <FlatList
+        ref={flatListRef}
+        data={images}
+        horizontal
+        pagingEnabled
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.imageContainer}>
             <Image source={{ uri: item.uri }} style={styles.image} />
           </View>
-        ))}
-      </Animated.View>
+        )}
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={(event) => {
+          const newIndex = Math.round(
+            event.nativeEvent.contentOffset.x / width
+          );
+          setCurrentIndex(newIndex);
+        }}
+      />
     </View>
   );
 };
