@@ -1,12 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
-const Termsofuse: React.FC = () => {
+const TermsCondition: React.FC = () => {
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.content}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus
         libero eget augue efficitur, et tempus ligula pulvinar. Morbi eget nisl
@@ -24,7 +21,6 @@ const Termsofuse: React.FC = () => {
         laoreet lobortis. Proin vitae ante et eros fermentum pharetra nec nec
         elit. Nullam euismod ante sit amet elit laoreet consequat.
       </Text>
-
       <Text style={styles.content}>
         Vivamus sed dui in purus tempus gravida. Aliquam nec dui vitae nunc
         aliquet egestas. In nec elit vestibulum, suscipit purus quis, lacinia
@@ -63,6 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 20,
   },
+
   content: {
     fontSize: 16,
     lineHeight: 24,
@@ -71,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Termsofuse;
+export default TermsCondition;
