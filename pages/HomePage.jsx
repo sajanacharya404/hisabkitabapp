@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Dimensions,
   Animated,
-  PanResponder,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import HomeButton from "../components/HomeButton";
@@ -26,6 +25,12 @@ const HomePage = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev); // Toggle menu state
+  };
+
+  const handleOverlayPress = () => {
+    if (isMenuOpen) {
+      closeMenu(); // Close the menu only if it's open
+    }
   };
 
   const closeMenu = () => {
@@ -64,7 +69,7 @@ const HomePage = () => {
 
       <Menu isMenuOpen={isMenuOpen} menuAnimation={menuAnimation} />
       {isMenuOpen && (
-        <TouchableOpacity style={styles.overlay} onPress={closeMenu} />
+        <TouchableOpacity style={styles.overlay} onPress={handleOverlayPress} />
       )}
       <PlusButton />
       <HomeButton />

@@ -21,7 +21,7 @@ import {
   faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Menu = ({ isMenuOpen, menuAnimation }) => {
+const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -48,6 +48,14 @@ const Menu = ({ isMenuOpen, menuAnimation }) => {
     }).start();
   };
 
+  const handleOverlayPress = () => {
+    onClose();
+  };
+
+  const handleMenuPress = () => {
+    // Prevent closing the menu when clicking inside the menu itself
+  };
+
   return (
     <Animated.View
       ref={menuRef}
@@ -58,53 +66,62 @@ const Menu = ({ isMenuOpen, menuAnimation }) => {
         },
       ]}
     >
-      <Text style={styles.menu_top}>Welcome, Sajan</Text>
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faChartBar} style={styles.icon} />
-          <Text style={styles.menuItemText}>Financial Reports</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faFileInvoiceDollar} style={styles.icon} />
-          <Text style={styles.menuItemText}>Invoices</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faWallet} style={styles.icon} />
-          <Text style={styles.menuItemText}>Wallet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faMoneyCheckAlt} style={styles.icon} />
-          <Text style={styles.menuItemText}>Payments</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faCalculator} style={styles.icon} />
-          <Text style={styles.menuItemText}>Calculator</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faFileAlt} style={styles.icon} />
-          <Text style={styles.menuItemText}>Documents</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faBalanceScale} style={styles.icon} />
-          <Text style={styles.menuItemText}>Balances</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faMoneyBill} style={styles.icon} />
-          <Text style={styles.menuItemText}>Bills</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faReceipt} style={styles.icon} />
-          <Text style={styles.menuItemText}>Receipts</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <FontAwesomeIcon icon={faCreditCard} style={styles.icon} />
-          <Text style={styles.menuItemText}>Credit Cards</Text>
-        </TouchableOpacity>
-        {/* Add more menu items here */}
-      </ScrollView>
+      <TouchableOpacity style={styles.menuContainer} onPress={handleMenuPress}>
+        <Text style={styles.menu_top}>Welcome, Sajan</Text>
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+        >
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faChartBar} style={styles.icon} />
+            <Text style={styles.menuItemText}>Financial Reports</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faFileInvoiceDollar} style={styles.icon} />
+            <Text style={styles.menuItemText}>Invoices</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faWallet} style={styles.icon} />
+            <Text style={styles.menuItemText}>Wallet</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faMoneyCheckAlt} style={styles.icon} />
+            <Text style={styles.menuItemText}>Payments</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faCalculator} style={styles.icon} />
+            <Text style={styles.menuItemText}>Calculator</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faFileAlt} style={styles.icon} />
+            <Text style={styles.menuItemText}>Documents</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faBalanceScale} style={styles.icon} />
+            <Text style={styles.menuItemText}>Balances</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faMoneyBill} style={styles.icon} />
+            <Text style={styles.menuItemText}>Bills</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faReceipt} style={styles.icon} />
+            <Text style={styles.menuItemText}>Receipts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <FontAwesomeIcon icon={faCreditCard} style={styles.icon} />
+            <Text style={styles.menuItemText}>Credit Cards</Text>
+          </TouchableOpacity>
+          {/* Add more menu items here */}
+        </ScrollView>
+      </TouchableOpacity>
+      {isMenuOpen && (
+        <TouchableOpacity
+          style={styles.overlay}
+          onPress={handleOverlayPress}
+          activeOpacity={1}
+        />
+      )}
     </Animated.View>
   );
 };
@@ -126,6 +143,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  menuContainer: {
+    flex: 1,
   },
   menu_top: {
     height: 90,
@@ -156,6 +176,13 @@ const styles = StyleSheet.create({
   icon: {
     color: "#2cd380",
     fontSize: 24,
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
   },
 });
 
