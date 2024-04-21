@@ -1,3 +1,4 @@
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -5,55 +6,69 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack"; // Import navigation prop type
+import { StackNavigationProp } from "@react-navigation/stack";
 
-type ProfileScreenNavigationProp = StackNavigationProp<any, "Profile">; // Define navigation prop type
+type ProfileScreenNavigationProp = StackNavigationProp<any, "Profile">;
 
 const Setting = () => {
-  const navigation = useNavigation<ProfileScreenNavigationProp>(); // Get navigation object
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
 
-  const handleLogout = () => {
-    navigation.navigate("Login"); // Navigate to the login screen
+  const handleNavigation = (routeName: string) => {
+    navigation.navigate(routeName);
   };
+
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.option}>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("Account")}
+      >
         <Text style={styles.optionText}>Account</Text>
         <Text style={styles.optionSubtext}>Manage your account settings</Text>
-      </View>
-      <View style={styles.option}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("Notification")}
+      >
         <Text style={styles.optionText}>Notifications</Text>
         <Text style={styles.optionSubtext}>
           Manage notification preferences
         </Text>
-      </View>
-      <View style={styles.option}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("Privacy")}
+      >
         <Text style={styles.optionText}>Privacy</Text>
         <Text style={styles.optionSubtext}>Control your privacy settings</Text>
-      </View>
-      <View style={styles.option}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("TermsCondition")}
+      >
         <Text style={styles.optionText}>Terms and Conditions</Text>
         <Text style={styles.optionSubtext}>Read our terms and conditions</Text>
-      </View>
-      <View style={styles.option}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("PrivacyPolicy")}
+      >
         <Text style={styles.optionText}>Privacy Policy</Text>
         <Text style={styles.optionSubtext}>Read our privacy policy</Text>
-      </View>
-      <View style={styles.option}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => handleNavigation("TermsOfUse")}
+      >
         <Text style={styles.optionText}>Terms of Use</Text>
         <Text style={styles.optionSubtext}>Read our terms of use</Text>
-      </View>
-      <View style={styles.option}>
-        <Text style={styles.optionText}>Terms of Use</Text>
-        <Text style={styles.optionSubtext}>Read our terms of use</Text>
-      </View>
-      <View style={styles.option}>
-        <Text style={styles.optionText}>Terms of Use</Text>
-        <Text style={styles.optionSubtext}>Read our terms of use</Text>
-      </View>
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+      </TouchableOpacity>
+      {/* Add more TouchableOpacity components for other options */}
+      <TouchableOpacity
+        style={styles.logoutButton}
+        onPress={() => handleNavigation("Login")}
+      >
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -82,12 +97,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
   },
   option: {
     backgroundColor: "#fff",
