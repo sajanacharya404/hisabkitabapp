@@ -10,6 +10,12 @@ import OtpPage from "./pages/OtpPage";
 import HomePage from "./pages/HomePage";
 import Profile from "./components/Profile";
 import Setting from "./components/Setting";
+import Account from "./components/setting/Account";
+import Privacy from "./components/setting/Privacy";
+import PrivacyPolicy from "./components/setting/PrivacyPolicy";
+import Termsofuse from "./components/setting/Termsofuse";
+import TermsCondition from "./components/setting/TermsCondition";
+import Notification from "./components/setting/Notification";
 
 const Stack = createStackNavigator();
 
@@ -18,50 +24,100 @@ const App: React.FC = () => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#2cd380" barStyle="light-content" />
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false, // Hide the header for all screens
-          }}
-        >
-          <Stack.Screen name="Login" component={LoginPage} />
-          <Stack.Screen name="Otp" component={OtpPage} />
-          <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={LoginPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Otp"
+            component={OtpPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomePage}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Profile"
             component={Profile}
-            options={({ navigation }) => ({
-              headerShown: true,
-              headerStyle: { backgroundColor: "#2cd380" },
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
               headerTintColor: "white",
-              headerLeft: () => (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Ionicons
-                    name="arrow-back"
-                    size={24}
-                    color="white"
-                    style={{ marginLeft: 10 }}
-                  />
-                </TouchableOpacity>
-              ),
             })}
           />
           <Stack.Screen
             name="Settings"
             component={Setting}
-            options={({ navigation }) => ({
-              headerShown: true,
-              headerStyle: { backgroundColor: "#2cd380" },
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
               headerTintColor: "white",
-              headerLeft: () => (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                  <Ionicons
-                    name="arrow-back"
-                    size={24}
-                    color="white"
-                    style={{ marginLeft: 10 }}
-                  />
-                </TouchableOpacity>
-              ),
+            })}
+          />
+          <Stack.Screen
+            name="Account"
+            component={Account}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="Privacy"
+            component={Privacy}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="PrivacyPolicy"
+            component={PrivacyPolicy}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="TermsOfUse"
+            component={Termsofuse}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="TermsCondition"
+            component={TermsCondition}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="Notification"
+            component={Notification}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
             })}
           />
         </Stack.Navigator>
