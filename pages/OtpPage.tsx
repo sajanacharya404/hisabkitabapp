@@ -20,9 +20,13 @@ const OtpPage = () => {
     newOtp[index] = value;
     setOtp(newOtp);
 
-    if (!value && index > 0) {
-      otpInputs[index - 1].focus();
-    } else if (value && index < otp.length - 1) {
+    if (value === "") {
+      if (index > 0) {
+        // Move focus to the previous input field when backspace is pressed
+        otpInputs[index - 1].focus();
+      }
+    } else if (index < otp.length - 1) {
+      // Move focus to the next input field when a digit is entered
       otpInputs[index + 1].focus();
     }
   };
@@ -49,6 +53,13 @@ const OtpPage = () => {
             onChangeText={(text) => handleOtpChange(index, text)}
             value={digit}
             ref={(input) => (otpInputs[index] = input)}
+            onKeyPress={({ nativeEvent }) => {
+              // Check if backspace key is pressed when the input is empty
+              if (nativeEvent.key === "Backspace" && digit === "") {
+                // Move focus to the previous input field
+                handleOtpChange(index, "");
+              }
+            }}
           />
         ))}
       </View>
