@@ -18,6 +18,8 @@ import TermsCondition from "./components/setting/TermsCondition";
 import Notification from "./components/setting/Notification";
 import Calculator from "./components/menu/Calculator";
 import Invoice from "./components/menu/Invoice";
+import Wallet from "./components/menu/Wallet";
+import Payment from "./components/menu/Payment";
 
 const Stack = createStackNavigator();
 
@@ -135,6 +137,26 @@ const App: React.FC = () => {
           <Stack.Screen
             name="Invoice"
             component={Invoice}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="Wallet"
+            component={Wallet}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="Payment"
+            component={Payment}
             options={({ route }) => ({
               headerStyle: {
                 backgroundColor: "#2cd380", // Set background color to green

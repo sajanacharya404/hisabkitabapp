@@ -57,6 +57,12 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
   const navigateToInvoice = () => {
     navigation.navigate("Invoice"); // Navigate to the profile screen
   };
+  const navigateToWallet = () => {
+    navigation.navigate("Wallet"); // Navigate to the profile screen
+  };
+  const navigateToPayment = () => {
+    navigation.navigate("Payment"); // Navigate to the profile screen
+  };
 
   return (
     <Animated.View
@@ -87,11 +93,11 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
             <FontAwesomeIcon icon={faFileInvoiceDollar} style={styles.icon} />
             <Text style={styles.menuItemText}>Invoices</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={navigateToWallet}>
             <FontAwesomeIcon icon={faWallet} style={styles.icon} />
             <Text style={styles.menuItemText}>Wallet</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={navigateToPayment}>
             <FontAwesomeIcon icon={faMoneyCheckAlt} style={styles.icon} />
             <Text style={styles.menuItemText}>Payments</Text>
           </TouchableOpacity>
