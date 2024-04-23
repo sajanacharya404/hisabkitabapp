@@ -54,6 +54,9 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
   const navigateToCalculater = () => {
     navigation.navigate("Calculater"); // Navigate to the profile screen
   };
+  const navigateToInvoice = () => {
+    navigation.navigate("Invoice"); // Navigate to the profile screen
+  };
 
   return (
     <Animated.View
@@ -80,7 +83,7 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
             <FontAwesomeIcon icon={faChartBar} style={styles.icon} />
             <Text style={styles.menuItemText}>Financial Reports</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={navigateToInvoice}>
             <FontAwesomeIcon icon={faFileInvoiceDollar} style={styles.icon} />
             <Text style={styles.menuItemText}>Invoices</Text>
           </TouchableOpacity>
