@@ -63,6 +63,9 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
   const navigateToPayment = () => {
     navigation.navigate("Payment"); // Navigate to the profile screen
   };
+  const navigateToDocument = () => {
+    navigation.navigate("Document"); // Navigate to the profile screen
+  };
 
   return (
     <Animated.View
@@ -85,10 +88,6 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
           contentContainerStyle={styles.scrollContainer}
           showsVerticalScrollIndicator={false}
         >
-          <TouchableOpacity style={styles.menuItem}>
-            <FontAwesomeIcon icon={faChartBar} style={styles.icon} />
-            <Text style={styles.menuItemText}>Financial Reports</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem} onPress={navigateToInvoice}>
             <FontAwesomeIcon icon={faFileInvoiceDollar} style={styles.icon} />
             <Text style={styles.menuItemText}>Invoices</Text>
@@ -108,7 +107,10 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
             <FontAwesomeIcon icon={faCalculator} style={styles.icon} />
             <Text style={styles.menuItemText}>Calculator</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={navigateToDocument}
+          >
             <FontAwesomeIcon icon={faFileAlt} style={styles.icon} />
             <Text style={styles.menuItemText}>Documents</Text>
           </TouchableOpacity>
