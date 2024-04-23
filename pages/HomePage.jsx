@@ -27,18 +27,8 @@ const HomePage = () => {
     setIsMenuOpen((prev) => !prev); // Toggle menu state
   };
 
-  const handleOverlayPress = () => {
-    if (isMenuOpen) {
-      closeMenu(); // Close the menu only if it's open
-    }
-  };
-
   const closeMenu = () => {
-    Animated.timing(menuAnimation, {
-      toValue: { x: -width, y: 0 },
-      duration: 300,
-      useNativeDriver: true,
-    }).start(() => setIsMenuOpen(false));
+    setIsMenuOpen(false);
   };
 
   const handleRefresh = () => {
@@ -67,10 +57,12 @@ const HomePage = () => {
       <HorizontalCarousel />
       <TabNavigator />
 
-      <Menu isMenuOpen={isMenuOpen} menuAnimation={menuAnimation} />
-      {isMenuOpen && (
-        <TouchableOpacity style={styles.overlay} onPress={handleOverlayPress} />
-      )}
+      <Menu
+        isMenuOpen={isMenuOpen}
+        menuAnimation={menuAnimation}
+        onClose={closeMenu}
+      />
+
       <PlusButton />
       <HomeButton />
     </View>

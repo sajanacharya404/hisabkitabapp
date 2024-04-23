@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
+  faTimes,
   faChartBar,
   faFileInvoiceDollar,
   faWallet,
@@ -20,9 +21,11 @@ import {
   faReceipt,
   faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
   const menuRef = useRef(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -48,12 +51,8 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
     }).start();
   };
 
-  const handleOverlayPress = () => {
-    onClose();
-  };
-
-  const handleMenuPress = () => {
-    // Prevent closing the menu when clicking inside the menu itself
+  const navigateToCalculater = () => {
+    navigation.navigate("Calculater"); // Navigate to the profile screen
   };
 
   return (
@@ -66,8 +65,13 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
         },
       ]}
     >
-      <TouchableOpacity style={styles.menuContainer} onPress={handleMenuPress}>
-        <Text style={styles.menu_top}>Welcome, Sajan</Text>
+      <TouchableOpacity style={styles.menuContainer}>
+        <View style={styles.menuHeader}>
+          <Text style={styles.menuTitle}>Welcome, Sajan</Text>
+          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+            <FontAwesomeIcon icon={faTimes} style={styles.closeIcon} />
+          </TouchableOpacity>
+        </View>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
           showsVerticalScrollIndicator={false}
@@ -88,7 +92,10 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
             <FontAwesomeIcon icon={faMoneyCheckAlt} style={styles.icon} />
             <Text style={styles.menuItemText}>Payments</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={navigateToCalculater}
+          >
             <FontAwesomeIcon icon={faCalculator} style={styles.icon} />
             <Text style={styles.menuItemText}>Calculator</Text>
           </TouchableOpacity>
@@ -115,13 +122,6 @@ const Menu = ({ isMenuOpen, menuAnimation, onClose }) => {
           {/* Add more menu items here */}
         </ScrollView>
       </TouchableOpacity>
-      {isMenuOpen && (
-        <TouchableOpacity
-          style={styles.overlay}
-          onPress={handleOverlayPress}
-          activeOpacity={1}
-        />
-      )}
     </Animated.View>
   );
 };
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
-    width: 300, // Adjust the width as needed
+    width: 200, // Adjust the width as needed
     height: "100%",
     backgroundColor: "#f8f9fa",
     borderColor: "#ccc",
@@ -147,14 +147,23 @@ const styles = StyleSheet.create({
   menuContainer: {
     flex: 1,
   },
-  menu_top: {
-    height: 90,
+  menuHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
     backgroundColor: "#2cd380",
+  },
+  menuTitle: {
     color: "white",
-    textAlign: "center",
-    justifyContent: "center",
-    paddingTop: 30,
-    fontSize: 25,
+    fontSize: 20,
+  },
+  closeButton: {
+    padding: 5,
+  },
+  closeIcon: {
+    color: "white",
+    fontSize: 20,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -176,13 +185,6 @@ const styles = StyleSheet.create({
   icon: {
     color: "#2cd380",
     fontSize: 24,
-  },
-  overlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
   },
 });
 

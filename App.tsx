@@ -16,6 +16,7 @@ import PrivacyPolicy from "./components/setting/PrivacyPolicy";
 import Termsofuse from "./components/setting/Termsofuse";
 import TermsCondition from "./components/setting/TermsCondition";
 import Notification from "./components/setting/Notification";
+import Calculator from "./components/menu/Calculator";
 
 const Stack = createStackNavigator();
 
@@ -113,6 +114,16 @@ const App: React.FC = () => {
           <Stack.Screen
             name="Notification"
             component={Notification}
+            options={({ route }) => ({
+              headerStyle: {
+                backgroundColor: "#2cd380", // Set background color to green
+              },
+              headerTintColor: "white",
+            })}
+          />
+          <Stack.Screen
+            name="Calculater"
+            component={Calculator}
             options={({ route }) => ({
               headerStyle: {
                 backgroundColor: "#2cd380", // Set background color to green
